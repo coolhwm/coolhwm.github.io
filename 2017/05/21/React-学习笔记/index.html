@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="成为更好的自己"><title>React - 学习笔记 | 翅膀的开发者小屋</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">React - 学习笔记</h1><a id="logo" href="/.">翅膀的开发者小屋</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">React - 学习笔记</h1><div class="post-meta">May 21, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h1 id="React-学习笔记"><a href="#React-学习笔记" class="headerlink" title="React - 学习笔记"></a>React - 学习笔记</h1><h1 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1. 环境准备"></a>1. 环境准备</h1><h1 id="1-1-NodeJS"><a href="#1-1-NodeJS" class="headerlink" title="1. 1 NodeJS"></a>1. 1 NodeJS</h1><h2 id="1-1-1-安装NodeJS"><a href="#1-1-1-安装NodeJS" class="headerlink" title="1.1.1 安装NodeJS"></a>1.1.1 安装NodeJS</h2><ul>
+<li>下载安装包：<a href="https://nodejs.org/en/" target="_blank" rel="external">nodejs</a>；</li>
+<li>检查安装：<code>node -v</code>, <code>npm -v</code>；</li>
+<li>配置国内源： 淘宝镜像<code>http://npm.taobao.org/</code>；使用<code>cnpm</code>进安装；可以修改<code>npmrc</code>改变耐默认地址；</li>
+</ul>
+<h2 id="1-1-2-初始化React环境"><a href="#1-1-2-初始化React环境" class="headerlink" title="1.1.2 初始化React环境"></a>1.1.2 初始化React环境</h2><p>1）初始化npm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init</div></pre></td></tr></table></figure></p>
+<p>2）初始化依赖包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save react react-dom babelify babel-preset-react</div></pre></td></tr></table></figure></p>
+<p>3）安装es2015依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install babel-loader --save</div><div class="line">npm install --save babel-preset-es2015</div></pre></td></tr></table></figure></p>
+<h1 id="1-2-webpack"><a href="#1-2-webpack" class="headerlink" title="1.2 webpack"></a>1.2 webpack</h1><p>1）增加<code>webpack.config.js</code>文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">context</span>: __dirname + <span class="string">'/src'</span>,</div><div class="line">  <span class="attr">entry</span>: <span class="string">"./js/index.js"</span>,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.js?$/</span>,</div><div class="line">        <span class="attr">exclude</span>: <span class="regexp">/(node_modules)/</span>,</div><div class="line">        <span class="attr">loader</span>: <span class="string">'babel-loader'</span>,</div><div class="line">        <span class="attr">query</span>: &#123;</div><div class="line">          <span class="attr">presets</span>: [<span class="string">'react'</span>, <span class="string">'es2015'</span>],</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: __dirname + <span class="string">'/src/'</span>,</div><div class="line">    <span class="attr">filename</span>: <span class="string">"bundle.js"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2）下载安装webpack<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install -g webpack</div><div class="line">npm install -g webpack-dev-server</div></pre></td></tr></table></figure></p>
+<p>3）在项目路径下安装webpack<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack --save</div></pre></td></tr></table></figure></p>
+<p>4）打包项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack</div></pre></td></tr></table></figure></p>
+<p>5）热部署</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack --watch</div></pre></td></tr></table></figure>
+<p>6）启动调试服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">webpack-dev-server</div><div class="line">http://localhost:8080/webpack-dev-server/</div></pre></td></tr></table></figure>
+<h1 id="1-3-Atom"><a href="#1-3-Atom" class="headerlink" title="1.3 Atom"></a>1.3 Atom</h1><ul>
+<li><code>atom-ternjs</code>：ES5/ES6支持，NodeJS，Angular等支持；</li>
+<li><code>atom-beautify</code>：格式化支持；</li>
+<li><code>open-in-browser</code>：在浏览器中打开；</li>
+<li><code>emmet</code>：zencoding；</li>
+<li><code>file-icons</code>：文件图标；</li>
+<li><code>highlight-selected</code></li>
+<li><code>Highlight Line</code></li>
+</ul>
+<h1 id="2-React-基础组件"><a href="#2-React-基础组件" class="headerlink" title="2. React 基础组件"></a>2. React 基础组件</h1><h2 id="2-1-虚拟DOM"><a href="#2-1-虚拟DOM" class="headerlink" title="2.1 虚拟DOM"></a>2.1 虚拟DOM</h2><p><img src="./1494522440223.png" alt="DOM"></p>
+<ul>
+<li>架构：在<code>DOM</code>及<code>APP</code>之间，增加一层<code>Virtual DOM</code>；</li>
+<li>快速：虚拟DOM可以将页面变更损耗的代价从<code>O(n^3)</code>降低到<code>O(n)</code>；</li>
+<li>实现：可以快速对变化的子树做<code>Patch</code>，只针对变更的节点处理，减少损耗；</li>
+</ul>
+<h2 id="2-2-React-组件"><a href="#2-2-React-组件" class="headerlink" title="2.2 React 组件"></a>2.2 React 组件</h2><p><strong>知识点</strong></p>
+<ul>
+<li>组件的<code>return</code>函数里返回的<code>HTML</code>节点必须是一个；</li>
+<li>可以给外部使用的组件需要加上<code>export default</code>；</li>
+<li>入口定义使用<code>ReactDOM.render([JSX], [DOM])</code>；</li>
+<li>可以使用<code>{变量名}</code>引用一个组件，可以通过参数的形式 ；</li>
+</ul>
+<p><strong>基础依赖</strong><br>定义<code>React</code>组件时，一般都需要依赖两个模块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var React = require(&apos;react&apos;);</div><div class="line">var ReactDom = require(&apos;react-dom&apos;)</div></pre></td></tr></table></figure></p>
+<p><strong>定义一个基本组件</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">export default class ComponentHeader extends React.Component&#123;</div><div class="line">  render()&#123;</div><div class="line">    return(</div><div class="line">      &lt;header&gt;</div><div class="line">        &lt;h1&gt;这里是头部&lt;/h1&gt;</div><div class="line">      &lt;/header&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>定义一个复合组件</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Index extends React.Component &#123;</div><div class="line">  render() &#123;</div><div class="line">    var component = &lt;ComponentHeader/&gt;</div><div class="line">    return (</div><div class="line">      &lt;div&gt;</div><div class="line">        &#123;component&#125;</div><div class="line">        &lt;BodyIndex/&gt;</div><div class="line">        &lt;ComponentFooter/&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="2-3-JSX内置表达式"><a href="#2-3-JSX内置表达式" class="headerlink" title="2.3 JSX内置表达式"></a>2.3 JSX内置表达式</h2><p><strong>三元表达式 </strong><br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;&#123;userName==<span class="string">''</span> ? <span class="string">'用户还没有登录'</span> : <span class="string">'用户名：'</span> + userName&#125;&lt;<span class="regexp">/p&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>动态绑定</strong></p>
+<ul>
+<li>使用单花括号进行绑定；</li>
+<li>绑定HTML属性时不需要引号；<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;&lt;input type="button" value=&#123;userName&#125; disabled=&#123;boolInput&#125;/&gt;&lt;/p&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>注释</strong></p>
+<ul>
+<li>注释的语法比较特殊；<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="comment">/* 这是一些注释 */</span>&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>绑定HTML代码</strong></p>
+<ul>
+<li>如果绑定的变量中含有转义符，需要使用<code>dangerouslySetInnerHTML</code>参数绑定；</li>
+<li>危险绑定可能造成<code>XSS</code>攻击；</li>
+<li>也可以进行<code>unicode</code>转码；<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;p dangerouslySetInnerHTML=&#123;&#123;__html : html&#125;&#125;&gt;&lt;/p&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2-4-生命周期"><a href="#2-4-生命周期" class="headerlink" title="2.4 生命周期"></a>2.4 生命周期</h2><p><strong>生命周期流程图</strong></p>
+<ul>
+<li><code>componentWillMount</code>：组件将要加载；</li>
+<li><code>componentDidMount</code>：组件加载完成；</li>
+</ul>
+<p><img src="./1494741163699.png" alt="生命周期流程图"></p>
+<p><strong>生命周期步骤</strong><br><img src="./1494741294893.png" alt="过程图"></p>
+<h1 id="3-React-属性与事件"><a href="#3-React-属性与事件" class="headerlink" title="3. React 属性与事件"></a>3. React 属性与事件</h1><h2 id="3-1-state-属性"><a href="#3-1-state-属性" class="headerlink" title="3.1 state 属性"></a>3.1 state 属性</h2><ul>
+<li><code>state</code>属性作为组件自身的信息承载体；</li>
+<li>初始化可以放在构造函数<code>constructor</code>中；</li>
+<li>修改<code>state</code>需要使用函数<code>this.setState(obj);</code>；</li>
+<li>可以使用<code>this.state.xxx</code>引用<code>state</code>中的值；</li>
+<li><code>state</code>的作用域只在当前类中，不污染其他模块；</li>
+</ul>
+<h2 id="3-2-props-属性"><a href="#3-2-props-属性" class="headerlink" title="3.2 props 属性"></a>3.2 props 属性</h2><ul>
+<li>和<code>state</code>不同，可以从外来传入属性参数；</li>
+<li>可以通过JSX标签的属性传入<code>props</code>；<br>-可以通过<code>this.props.xxx</code>引用<code>props</code>中的值；</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">BodyIndex</span> <span class="attr">userid</span>=<span class="string">'123'</span> <span class="attr">username</span>=<span class="string">"456"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;this.state.username&#125; &#123;this.props.userid&#125; &#123;this.props.username&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="3-3-事件与数据的双向绑定"><a href="#3-3-事件与数据的双向绑定" class="headerlink" title="3.3 事件与数据的双向绑定"></a>3.3 事件与数据的双向绑定</h2><p><strong>子组件向父组件传递参数</strong></p>
+<ul>
+<li>父组件向子页面传递处理函数；</li>
+<li>子组件将值传递到处理函数中；</li>
+<li>父组件在处理函数中获得值的变化，对自身属性进行修改；</li>
+<li>需要注意对<code>this</code>进行绑定；</li>
+<li>通过<code>event.target.value</code>可以引用事件中的参数；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//处理函数</div><div class="line">handleChildValueChange(event) &#123;</div><div class="line">  //引用事件中的参数</div><div class="line">  this.setState(&#123;age: event.target.value&#125;);</div><div class="line">&#125;</div><div class="line">  </div><div class="line">//引用子组件</div><div class="line">&lt;BodyChild handleChildValueChange=&#123;this.handleChildValueChange.bind(this)&#125; /&gt;</div><div class="line"></div><div class="line">//子组件内容</div><div class="line">&lt;p&gt;子页面输入:&lt;input type=&apos;text&apos; onChange=&#123;this.props.handleChildValueChange&#125; /&gt;&lt;/p&gt;</div></pre></td></tr></table></figure>
+<h2 id="3-4-可复用组件"><a href="#3-4-可复用组件" class="headerlink" title="3.4 可复用组件"></a>3.4 可复用组件</h2><p><strong>Prop 验证</strong></p>
+<ul>
+<li>可以对字段类型及必填校验进定义；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//导入</div><div class="line">import PropTypes from &apos;prop-types&apos;;</div><div class="line"></div><div class="line">//配置校验</div><div class="line">BodyIndex.propTypes = &#123;</div><div class="line">  userid: PropTypes.number.isRequired</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Prop 默认值</strong></p>
+<ul>
+<li>可以给<code>props</code>属性定义默认值，若没有传递参数，则使用默认值；<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//定义</div><div class="line">const defaultProps = &#123;</div><div class="line">  username: &apos;这是一个默认的用户名&apos;</div><div class="line">&#125;;</div><div class="line">//应用</div><div class="line">BodyIndex.defaultProps = defaultProps;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>传递所有参数</strong></p>
+<ul>
+<li>使用<code>{...this.props}</code>可以一次性传递所有参数；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;BodyChild &#123;...this.props&#125; id=&#123;4&#125; handleChildValueChange=&#123;this.handleChildValueChange.bind(this)&#125;/&gt;</div></pre></td></tr></table></figure>
+<h2 id="3-5-组件的Refs"><a href="#3-5-组件的Refs" class="headerlink" title="3.5 组件的Refs"></a>3.5 组件的Refs</h2><p><strong>原生方式获取DOM节点</strong></p>
+<ul>
+<li>不推荐，可能导致性能或安全问题； <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var mySubmitBotton = document.getElementById(&apos;submitBotton&apos;);</div><div class="line">ReactDOM.findDOMNode(mySubmitBotton).style.color = &apos;red&apos;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>Ref 方式获取DOM节点 </strong></p>
+<ul>
+<li>访问到组件内部DOM节点的唯一可靠方法；</li>
+<li>不要在<code>render</code>之前对<code>Refs</code>进行调用；</li>
+<li>不要滥用；<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//定义</div><div class="line">&lt;input type=&apos;button&apos;  ref=&quot;submitBotton&quot; /&gt;</div><div class="line"></div><div class="line">//引用</div><div class="line">this.refs.submitBotton.style.color = &apos;red&apos;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-6-独立组件间共享Mixins"><a href="#3-6-独立组件间共享Mixins" class="headerlink" title="3.6 独立组件间共享Mixins"></a>3.6 独立组件间共享Mixins</h2><ul>
+<li>在不同的组件之间共享代码；</li>
+<li>和页面具有类似的生命周期；</li>
+<li>在<code>ES6</code>环境下需要安装插件；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">//安装插件</div><div class="line">npm install --save react-mixin@2</div><div class="line"></div><div class="line">//定义</div><div class="line">const MixinLog = &#123;</div><div class="line">  componentDidMount() &#123;</div><div class="line">    console.log(&quot;Mixin 加载完毕&quot;);</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  log() &#123;</div><div class="line">    console.log(&apos;abscdfa......&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">export default MixinLog;</div><div class="line"></div><div class="line">//引入包</div><div class="line">import ReactMixin from &apos;react-mixin&apos;;</div><div class="line">import MixinLog from &apos;./mixins&apos;;</div><div class="line"></div><div class="line">//引用</div><div class="line">ReactMixin(BodyIndex.prototype, MixinLog);</div><div class="line"></div><div class="line">//调用方法</div><div class="line">MixinLog.log();</div></pre></td></tr></table></figure>
+<h1 id="4-React-样式"><a href="#4-React-样式" class="headerlink" title="4. React 样式"></a>4. React 样式</h1><h2 id="4-1-内联样式"><a href="#4-1-内联样式" class="headerlink" title="4.1 内联样式"></a>4.1 内联样式</h2><p><strong>JS样式</strong></p>
+<ul>
+<li>会解析成页面的内联样式，不推荐使用；</li>
+<li>样式要在<code>render</code>函数中定义；</li>
+<li>可能在<code>ReactNative</code>中使用到；</li>
+<li>有一些局限，比如<code>hover</code>、动画不能使用；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//定义</div><div class="line">const styleComponentHeader = &#123;</div><div class="line">  header: &#123;</div><div class="line">    backgroundColor: &apos;#333333&apos;,</div><div class="line">    color: &apos;#FFFFFF&apos;,</div><div class="line">    paddingTop: &apos;15px&apos;,</div><div class="line">    paddingBottom: &apos;15px&apos;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">//应用</div><div class="line">&lt;header style=&#123;styleComponentHeader.header&#125;&gt;</div><div class="line">  &lt;h1&gt;这里是头部&lt;/h1&gt;</div><div class="line">&lt;/header&gt;</div></pre></td></tr></table></figure>
+<p><strong>引用样式</strong></p>
+<ul>
+<li>使用<code>className</code>关键字进行应用；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;header className=&quot;smallFontSize&quot;&gt;</div><div class="line">  &lt;h1&gt;这里是头部&lt;/h1&gt;</div><div class="line">&lt;/header&gt;</div></pre></td></tr></table></figure>
+<p><strong>表达式</strong></p>
+<ul>
+<li>在内联样式中可以使用表达式的形式，动态控制样式对象；<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">paddingTop: (this.state.miniHeader) ? &apos;3px&apos; : &apos;15px&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="4-2-CSS模块化"><a href="#4-2-CSS模块化" class="headerlink" title="4.2 CSS模块化"></a>4.2 CSS模块化</h2><p><strong>模块化的原因</strong></p>
+<ul>
+<li>全局污染；</li>
+<li>命名混乱；</li>
+<li>依赖管理不彻底；</li>
+<li>无法共享变量；</li>
+<li>代码压缩不彻底；</li>
+</ul>
+<p><strong>模块化的优点</strong></p>
+<ul>
+<li>所有样式都是local的，解决了命名冲突和全局污染；</li>
+<li><code>class</code>名称生成规则灵活，可以压缩；</li>
+<li>只需引用组件的JS就可以搞定所有的JS和CSS；</li>
+</ul>
+<p><strong>CSS Module 模块化</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//安装插件</div><div class="line">//style-loader</div><div class="line">//css-loader</div><div class="line"></div><div class="line">//配置Webpack 的loader</div><div class="line">&#123;</div><div class="line">	test: /\.css$/,</div><div class="line">	loader: &apos;style-loader!css-loader?modules&amp;importLoaders=1&amp;localIdentName=[name]__[local]___[hash:base64:5]&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//引用CSS模块</div><div class="line">var footerCss = require(&quot;../../css/footer.css&quot;);</div><div class="line"></div><div class="line">//使用样式</div><div class="line">&lt;footer className=&#123;footerCss.miniFooter&#125;&gt;</div><div class="line">  &lt;h1&gt;这里是页脚，一般放置一些版权信息&lt;/h1&gt;</div><div class="line">&lt;/footer&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="4-3-JSX与CSS样式互转"><a href="#4-3-JSX与CSS样式互转" class="headerlink" title="4.3 JSX与CSS样式互转"></a>4.3 JSX与CSS样式互转</h2><p><a href="http://staxmanade.com/CssToReact/" target="_blank" rel="external">在线转换工具</a></p>
+<h2 id="4-5-Ant-Design-样式框架"><a href="#4-5-Ant-Design-样式框架" class="headerlink" title="4.5 Ant Design 样式框架"></a>4.5 Ant Design 样式框架</h2><p><strong>常见的React样式框架</strong><br><a href="http://www.material-ui.com/#/" target="_blank" rel="external">Material-UI</a><br><a href="https://ant.design/index-cn" target="_blank" rel="external">Ant Design</a><br><a href="https://react-bootstrap.github.io/" target="_blank" rel="external">React-Bootstrap</a><br><a href="http://amazeui.org/react/components/" target="_blank" rel="external">Amaze UI React</a></p>
+<p><strong>基础使用</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//安装</div><div class="line">npm install antd --save</div><div class="line"></div><div class="line">//引入样式</div><div class="line">import &apos;antd/dist/antd.css&apos;</div><div class="line"></div><div class="line">//引入组件</div><div class="line">import &#123; DatePicker &#125; from &apos;antd&apos;;</div><div class="line"></div><div class="line">//渲染组件</div><div class="line">ReactDOM.render(&lt;DatePicker /&gt;, mountNode);</div></pre></td></tr></table></figure></p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://yoursite.com/2017/05/21/React-学习笔记/" data-id="cj2yop4fj0000lgvp58wkbq3d" class="article-share-link">分享</a><div class="tags"></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/21/React-学习笔记/">React - 学习笔记</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">翅膀的开发者小屋.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
