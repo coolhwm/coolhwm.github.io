@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>小程序接入微信支付 | 翅膀的开发者小屋</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">小程序接入微信支付</h1><a id="logo" href="/.">翅膀的开发者小屋</a><p class="description">记录自己的学习历程</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">小程序接入微信支付</h1><div class="post-meta">May 24, 2017<span> | </span><span class="category"><a href="/categories/微信开发/">微信开发</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="clear"><div id="toc" class="toc-article"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用链接"><span class="toc-text">常用链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#官方网站"><span class="toc-text">官方网站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开源工具"><span class="toc-text">开源工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-小程序接入微信支付指引"><span class="toc-text">1.小程序接入微信支付指引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-术语"><span class="toc-text">1.1 术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-支付账户"><span class="toc-text">1.2 支付账户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-接口规则："><span class="toc-text">1.3 接口规则：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-协议规则"><span class="toc-text">1.3.1 协议规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-参数规定"><span class="toc-text">1.3.2 参数规定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-签名算法"><span class="toc-text">1.3.3 签名算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-小程序支付"><span class="toc-text">1.4 小程序支付</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-开发步骤"><span class="toc-text">1.4.1 开发步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-2-业务流程"><span class="toc-text">1.4.2  业务流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-3-小程序调起微信支付API"><span class="toc-text">1.4.3 小程序调起微信支付API</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-API列表"><span class="toc-text">1.5 API列表</span></a></li></ol></li></ol></div></div><div class="post-content"><h2 id="常用链接"><a href="#常用链接" class="headerlink" title="常用链接"></a>常用链接</h2><h3 id="官方网站"><a href="#官方网站" class="headerlink" title="官方网站"></a>官方网站</h3><p><a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_1" target="_blank" rel="external">微信支付开发文档</a><br><a href="https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=1_1" target="_blank" rel="external">小程序接入微信支付指引</a><br><a href="https://www.qcloud.com/document/product/400/4143" target="_blank" rel="external">腾讯免费证书安装指引</a></p>
+<h3 id="开源工具"><a href="#开源工具" class="headerlink" title="开源工具"></a>开源工具</h3><p><a href="http://www.open-open.com/lib/view/open1484824867464.html" target="_blank" rel="external">Wpay 轻量的微信支付组件</a><br><a href="https://github.com/Wechat-Group/weixin-java-tools" target="_blank" rel="external">weixin-java-tools 微信JAVA SDK</a><br><a href="https://github.com/borball/weixin-sdk" target="_blank" rel="external">weixin-sdk 微信JAVA SDK</a></p>
+<h2 id="1-小程序接入微信支付指引"><a href="#1-小程序接入微信支付指引" class="headerlink" title="1.小程序接入微信支付指引"></a>1.小程序接入微信支付指引</h2><h3 id="1-1-术语"><a href="#1-1-术语" class="headerlink" title="1.1 术语"></a>1.1 术语</h3><p><strong>支付模式</strong></p>
+<ul>
+<li>刷卡支付：用户展示二维码，商户扫描后完成支付，用于线下收银场景；</li>
+<li>扫码支付：生成二维码，用户扫一扫完成支付，用于网页字符或线下收银；</li>
+<li>公众号支付：在公众号中打开商户的H5页面，调用JS-API完成支付；</li>
+<li>APP支付：在移动端中集成支付SDK完成支付；</li>
+<li>小程序支付：在小程序平台内实现支付；</li>
+</ul>
+<p><strong>名词解释</strong></p>
+<ul>
+<li>商户证书：微信提供的二进制文件，识别商户真实身份的凭据；</li>
+<li>签名：商户后台和微信支付后台根据相同的秘钥和算法生成的结果，用于校验双方的合法性；</li>
+<li>Openid：用户在小程序内的标识符；</li>
+</ul>
+<h3 id="1-2-支付账户"><a href="#1-2-支付账户" class="headerlink" title="1.2 支付账户"></a>1.2 支付账户</h3><ul>
+<li><code>appid</code>：小程序的唯一标识；</li>
+<li><code>mch_id</code>：商户ID，商户申请微信支付后分配的商户收款账号；</li>
+<li><code>key</code>：交易过程中生成的秘钥，不在网络中传播；</li>
+<li><code>secrtet</code>：appid对应的接口密码，为调用接口的凭据；</li>
+</ul>
+<h3 id="1-3-接口规则："><a href="#1-3-接口规则：" class="headerlink" title="1.3 接口规则："></a>1.3 接口规则：</h3><h4 id="1-3-1-协议规则"><a href="#1-3-1-协议规则" class="headerlink" title="1.3.1 协议规则"></a>1.3.1 协议规则</h4><ul>
+<li><code>HTTPS</code>传输；</li>
+<li><code>POST</code>方式提交；</li>
+<li><code>XML</code>作为数据格式；</li>
+<li><code>UTF-8</code>字符编码；</li>
+<li><code>MD5</code>签名算法，满足签名规范；</li>
+<li>退款、撤销时需要商户证书；</li>
+<li>先判断协议反馈、再判断业务返回、最后判断交易返回；</li>
+</ul>
+<h4 id="1-3-2-参数规定"><a href="#1-3-2-参数规定" class="headerlink" title="1.3.2 参数规定"></a>1.3.2 参数规定</h4><ul>
+<li>body字段：商家名称-销售商品类目；</li>
+<li>交易金额：单位为分；</li>
+<li>交易类型：JSAPI；</li>
+<li>货币类型：CNY；</li>
+<li>时间：东八区；</li>
+<li>时间戳：10位数字，19700101至今的秒数；</li>
+<li>商户订单号：商户生成，唯一，重新发起字符需要使用原订单号；</li>
+<li>银行类型：参考API文档；</li>
+</ul>
+<h4 id="1-3-3-签名算法"><a href="#1-3-3-签名算法" class="headerlink" title="1.3.3 签名算法"></a>1.3.3 签名算法</h4><p><strong>随机数</strong></p>
+<ul>
+<li><code>nonce_str</code>字段为随机字符串；</li>
+</ul>
+<p><strong>签名算法</strong></p>
+<ul>
+<li>参数名字典排序；</li>
+<li>拼接临时字符串<code>k1=v1&amp;k2=v2.....</code>；</li>
+<li>拼接API秘钥；</li>
+<li>计算MD5；</li>
+</ul>
+<h3 id="1-4-小程序支付"><a href="#1-4-小程序支付" class="headerlink" title="1.4 小程序支付"></a>1.4 小程序支付</h3><h4 id="1-4-1-开发步骤"><a href="#1-4-1-开发步骤" class="headerlink" title="1.4.1 开发步骤"></a>1.4.1 开发步骤</h4><ul>
+<li>统一下单：获取openid，调用相同的API；</li>
+<li>数据签名：appId,nonceStr,package,signType,timeStamp；</li>
+<li>通讯协议：HTTPS；</li>
+<li>支付目录：无；</li>
+<li>授权域名：无；</li>
+</ul>
+<h4 id="1-4-2-业务流程"><a href="#1-4-2-业务流程" class="headerlink" title="1.4.2  业务流程"></a>1.4.2  业务流程</h4><p><img src="./1494662323149.png" alt="业务 "></p>
+<ul>
+<li>用户点击支付；</li>
+<li>小程序调用服务端下单接口；</li>
+<li>服务端获取用户的<code>openid</code>；</li>
+<li>服务端生成商户订单数据；</li>
+<li>服务端构造报文，调用统一支付接口完成下单（需要签名）；</li>
+<li>微信服务器返回预付单信息<code>prepay_id</code>；</li>
+<li>服务端将组合数据再次签名；</li>
+<li>服务端返回字符参数（5个参数和sign）；</li>
+<li>用户前端确认支付；</li>
+<li>小程序端发起调用支付接口；</li>
+<li>微信服务端返回支付结果；</li>
+<li>小程序端展现支付结果；</li>
+<li>微信服务端向服务端推送支付结果；</li>
+<li>服务端更新订单状态为已支付；</li>
+</ul>
+<h4 id="1-4-3-小程序调起微信支付API"><a href="#1-4-3-小程序调起微信支付API" class="headerlink" title="1.4.3 小程序调起微信支付API"></a>1.4.3 小程序调起微信支付API</h4><p><strong>需要签名的字段</strong></p>
+<ul>
+<li>小程序ID <code>appId</code>；</li>
+<li>时间戳 <code>timeStamp</code>；</li>
+<li>随机字符串 <code>nonceStr</code>不超过32位；</li>
+<li>数据包 <code>package</code>；即为统一下单返回的<code>prepay_id</code>；</li>
+<li>签名方式 <code>signType</code>；固定为<code>MD5</code>；</li>
+</ul>
+<p><strong>调用接口</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">wx.requestPayment(</div><div class="line">&#123;</div><div class="line">	<span class="string">'timeStamp'</span>: <span class="string">''</span>,</div><div class="line">	<span class="string">'nonceStr'</span>: <span class="string">''</span>,</div><div class="line">	<span class="string">'package'</span>: <span class="string">''</span>,</div><div class="line">	<span class="string">'signType'</span>: <span class="string">'MD5'</span>,</div><div class="line">	<span class="string">'paySign'</span>: <span class="string">''</span>,</div><div class="line">	<span class="string">'success'</span>:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;&#125;,</div><div class="line">	<span class="string">'fail'</span>:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;&#125;,</div><div class="line">	<span class="string">'complete'</span>:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="1-5-API列表"><a href="#1-5-API列表" class="headerlink" title="1.5 API列表"></a>1.5 API列表</h3><ul>
+<li><strong>统一下单</strong>：商户在小程序中先调用该接口在微信支付服务后台生成预支付交易单，返回正确的预支付交易后调起支付；</li>
+<li><strong>查询订单</strong>：该接口提供所有微信支付订单的查询，商户可以通过查询订单接口主动查询订单状态，完成下一步的业务逻辑；</li>
+<li><strong>关闭订单</strong>：商户订单支付失败需要生成新单号重新发起支付，要对原订单号调用关单，避免重复支付；系统下单后，用户支付超时，系统退出不再受理，避免用户继续，请调用关单接口；</li>
+<li><strong>申请退款</strong>：当交易发生之后一段时间内，由于买家或者卖家的原因需要退款时，卖家可以通过退款接口将支付款退还给买家，微信支付将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退到买家帐号上；</li>
+<li><strong>查询退款</strong>：提交退款申请后，通过调用该接口查询退款状态。退款有一定延时，用零钱支付的退款20分钟内到账，银行卡支付的退款3个工作日后重新查询退款状态；</li>
+<li><strong>下载对账单</strong>：商户可以通过该接口下载历史交易清单。比如掉单、系统错误等导致商户侧和微信侧数据不一致，通过对账单核对后可校正支付状态；</li>
+<li><strong>支付结果通用通知</strong>：支付完成后，微信会把相关支付结果和用户信息发送给商户，商户需要接收处理，并返回应答。</li>
+</ul>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://yoursite.com/2017/05/24/小程序接入微信支付/" data-id="cj31twj6a0000h8vpq6b7azrt" class="article-share-link">分享</a><div class="tags"><a href="/tags/微信/">微信</a><a href="/tags/小程序/">小程序</a></div><div class="post-nav"><a href="/2017/05/23/微信卡券使用规则解读与摘要/" class="next">微信卡券使用规则解读与摘要</a></div><div id="uyan_frame"></div><script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2134339"></script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/React/" style="font-size: 15px;">React</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/微信/" style="font-size: 15px;">微信</a> <a href="/tags/小程序/" style="font-size: 15px;">小程序</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/24/小程序接入微信支付/">小程序接入微信支付</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/23/微信卡券使用规则解读与摘要/">微信卡券使用规则解读与摘要</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/22/使用Hexo-Github-搭建个人博客/">使用Hexo + Github 搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/21/React-学习笔记/">React - 学习笔记</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">翅膀的开发者小屋.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
